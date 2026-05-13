@@ -18,10 +18,7 @@ This project was intentionally built without a backend to deeply understand fron
 
 # Live Demo
 
-```bash
-https://syncwrite.vercel.app
-```
-
+👉 **[Launch SyncWrite Workspace](https://IsraniNikita.github.io/syncwrite-collaborative-editor/)**
 ---
 
 # Tech Stack
