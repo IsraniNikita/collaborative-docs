@@ -1,0 +1,3 @@
+export const HEARTBEAT_INTERVAL = 3000;
+
+export const STALE_THRESHOLD = 10000;

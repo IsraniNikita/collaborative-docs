@@ -1,0 +1,1 @@
+export const TYPING_TIMEOUT = 2000;
