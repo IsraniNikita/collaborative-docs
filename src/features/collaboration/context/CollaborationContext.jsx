@@ -1,4 +1,9 @@
-import { createContext, useContext, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 
 import { collaborationReducer } from "./collaborationReducer";
 
@@ -19,7 +24,7 @@ export function CollaborationProvider({ children }) {
     initialCollaborationState
   );
 
-  const session = getOrCreateSession();
+  const [session] = useState(getOrCreateSession);
 
   usePresence({
     session,

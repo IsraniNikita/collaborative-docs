@@ -5,6 +5,10 @@ import {
 } from "../services/typingService";
 
 import { setTypingUsers } from "../context/actions";
+import {
+  LEGACY_STORAGE_KEYS,
+  STORAGE_KEYS,
+} from "../constants/storageKeys";
 
 export function useTypingIndicator({
   dispatch,
@@ -13,7 +17,10 @@ export function useTypingIndicator({
     function handleStorageChange(event) {
       if (
         !event.key?.startsWith(
-          "syncwrite_typing_"
+          STORAGE_KEYS.TYPING_PREFIX
+        ) &&
+        !event.key?.startsWith(
+          LEGACY_STORAGE_KEYS.TYPING_PREFIX
         )
       ) {
         return;

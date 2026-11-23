@@ -1,8 +1,8 @@
-# SyncWrite — Stimulated Collaborative Editing Workspace
+# Collaborative Docs — Simulated Collaborative Editing Workspace
 
 A browser-based collaborative editing workspace that simulates real-time multi-user collaboration using browser tabs and native browser synchronization mechanisms.
 
-SyncWrite demonstrates how collaborative systems work internally by combining:
+Collaborative Docs demonstrates how collaborative systems work internally by combining:
 
 * Cross-tab synchronization
 * Shared document editing
@@ -18,7 +18,7 @@ This project was intentionally built without a backend to deeply understand fron
 
 # Live Demo
 
-👉 **[Launch SyncWrite Workspace](https://IsraniNikita.github.io/syncwrite-collaborative-editor/)**
+👉 **[Launch Collaborative Docs](https://israninikita.github.io/collaborative-docs/)**
 ---
 
 # Tech Stack
@@ -215,7 +215,7 @@ This is a deliberate engineering tradeoff.
 Initial implementation used:
 
 ```js
-syncwrite_collaborators = []
+collaborative_docs_collaborators = []
 ```
 
 This caused race conditions because multiple tabs rewrote the same array simultaneously.
@@ -223,7 +223,7 @@ This caused race conditions because multiple tabs rewrote the same array simulta
 The architecture was refactored to:
 
 ```js
-syncwrite_collaborator_<sessionId>
+collaborative_docs_collaborator_<sessionId>
 ```
 
 Benefits:
@@ -232,6 +232,8 @@ Benefits:
 * Better ownership isolation
 * Stable collaborator tracking
 * Prevented flickering updates
+
+On startup, data stored under the previous browser-storage namespace is migrated to the current keys so existing documents and session data are retained.
 
 ---
 
@@ -427,7 +429,8 @@ If a backend were added, future improvements would include:
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/IsraniNikita/collaborative-docs.git
+cd collaborative-docs
 ```
 
 ---

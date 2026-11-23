@@ -1,4 +1,7 @@
-import { STORAGE_KEYS } from "../constants/storageKeys";
+import {
+  LEGACY_STORAGE_KEYS,
+  STORAGE_KEYS,
+} from "../constants/storageKeys";
 
 import {
   generateSessionId,
@@ -6,10 +9,26 @@ import {
 } from "../utils/session";
 
 export function getOrCreateSession() {
-  const existingSession =
+  let existingSession =
     sessionStorage.getItem(
       STORAGE_KEYS.SESSION
     );
+
+  if (!existingSession) {
+    existingSession = sessionStorage.getItem(
+      LEGACY_STORAGE_KEYS.SESSION
+    );
+
+    if (existingSession) {
+      sessionStorage.setItem(
+        STORAGE_KEYS.SESSION,
+        existingSession
+      );
+      sessionStorage.removeItem(
+        LEGACY_STORAGE_KEYS.SESSION
+      );
+    }
+  }
 
   if (existingSession) {
     return JSON.parse(existingSession);

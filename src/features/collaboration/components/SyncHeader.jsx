@@ -36,7 +36,7 @@ function SyncHeaderComponent() {
 
   return (
     <header className="topbar">
-      <h1>SyncWrite</h1>
+      <h1>Collaborative Docs</h1>
 
       <span className="sync-status">
         <span>{currentStatus.icon}</span>

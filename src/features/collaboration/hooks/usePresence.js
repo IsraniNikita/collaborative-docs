@@ -7,6 +7,10 @@ import {
 } from "../services/presenceService";
 
 import { setCollaborators } from "../context/actions";
+import {
+  LEGACY_STORAGE_KEYS,
+  STORAGE_KEYS,
+} from "../constants/storageKeys";
 
 import {
   HEARTBEAT_INTERVAL,
@@ -79,7 +83,10 @@ export function usePresence({
     function handleStorageChange(event) {
       if (
         !event.key?.startsWith(
-          "syncwrite_collaborator_"
+          STORAGE_KEYS.COLLABORATOR_PREFIX
+        ) &&
+        !event.key?.startsWith(
+          LEGACY_STORAGE_KEYS.COLLABORATOR_PREFIX
         )
       ) {
         return;

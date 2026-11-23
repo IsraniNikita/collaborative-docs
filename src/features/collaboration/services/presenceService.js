@@ -1,26 +1,38 @@
-const COLLABORATOR_PREFIX =
-  "syncwrite_collaborator_";
+import {
+  LEGACY_STORAGE_KEYS,
+  STORAGE_KEYS,
+} from "../constants/storageKeys";
+import { migrateLegacyStoragePrefix } from "./legacyStorageMigration";
 
 export function saveCollaborator(user) {
   localStorage.setItem(
-    `${COLLABORATOR_PREFIX}${user.id}`,
+    `${STORAGE_KEYS.COLLABORATOR_PREFIX}${user.id}`,
     JSON.stringify(user)
   );
 }
 
 export function removeCollaborator(userId) {
   localStorage.removeItem(
-    `${COLLABORATOR_PREFIX}${userId}`
+    `${STORAGE_KEYS.COLLABORATOR_PREFIX}${userId}`
+  );
+  localStorage.removeItem(
+    `${LEGACY_STORAGE_KEYS.COLLABORATOR_PREFIX}${userId}`
   );
 }
 
 export function loadCollaborators() {
+  migrateLegacyStoragePrefix(
+    localStorage,
+    LEGACY_STORAGE_KEYS.COLLABORATOR_PREFIX,
+    STORAGE_KEYS.COLLABORATOR_PREFIX
+  );
+
   const collaborators = [];
 
   Object.keys(localStorage).forEach((key) => {
     if (
       !key.startsWith(
-        COLLABORATOR_PREFIX
+        STORAGE_KEYS.COLLABORATOR_PREFIX
       )
     ) {
       return;

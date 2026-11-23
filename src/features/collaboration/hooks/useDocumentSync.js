@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 
-import { STORAGE_KEYS } from "../constants/storageKeys";
+import {
+  LEGACY_STORAGE_KEYS,
+  STORAGE_KEYS,
+} from "../constants/storageKeys";
 
 import { SYNC_STATUS } from "../constants/syncStatus";
 
@@ -79,8 +82,8 @@ export function useDocumentSync({
       event
     ) {
       if (
-        event.key !==
-        STORAGE_KEYS.DOCUMENT
+        event.key !== STORAGE_KEYS.DOCUMENT &&
+        event.key !== LEGACY_STORAGE_KEYS.DOCUMENT
       ) {
         return;
       }
